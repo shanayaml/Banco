@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Menu {
 
 	public static ArrayList <usuario> cuentas=new ArrayList<usuario>();
-	
+	public static usuario u;
 	public static void llenar_cuentas() {
 		usuario u1= new usuario("Shanaya","1234",100);
 		cuentas.add(u1);
@@ -19,6 +19,7 @@ public class Menu {
 		boolean continuar=true;
 		boolean creacion_cuenta=false;
 		boolean valido=true;
+		
 		while (!creacion_cuenta) {
 			
 		System.out.println("¿Desea crear una cuenta?");
@@ -36,15 +37,7 @@ public class Menu {
 		}
 		
 		
-		System.out.println("-------Inicio de sesion-------");
-		System.out.println("Introduzca su usuario: ");
-		String usuario=sc.next();
-		int i;
-		for( i=0; i<cuentas.size();i++) {
-			if(usuario.equals(cuentas.get(i).getNombre()))
-				break;
-		}
-		if(Operaciones.InicioSesion(sc,cuentas.get(i))) {
+		if(Operaciones.InicioSesion(sc,cuentas)) {
 			while(continuar) {
 				while(valido) {
 				opciones_menu();
@@ -53,16 +46,16 @@ public class Menu {
 				switch(opc) {
 				
 				case 1:
-					Operaciones.VerSaldo(sc,cuentas.get(i));
+					Operaciones.VerSaldo(sc,u);
 					break;
 				case 2:
-					Operaciones.Retirar(sc, cuentas.get(i));
+					Operaciones.Retirar(sc, u);
 					break;
 				case 3:
-					Operaciones.Deposito(sc, cuentas.get(i));
+					Operaciones.Deposito(sc, u);
 					break;
 				case 4:
-					Operaciones.Transferencia(sc, cuentas.get(i), cuentas);
+					Operaciones.Transferencia(sc, u, cuentas);
 					break;
 				case 5:
 					while(continuar) {

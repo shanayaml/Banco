@@ -3,13 +3,27 @@ import java.util.Scanner;
 import java.util.ArrayList;
 public class Operaciones {
 
-	public static boolean InicioSesion(Scanner sc, usuario u1) {
+	public static boolean InicioSesion(Scanner sc, ArrayList<usuario> cuentas ) {
 		boolean verificado=false;
-		
-		System.out.println("Introduce la contraseña: ");
-		String contrasena=sc.next();
-		if(contrasena.equals(u1.getContrasena())) {
-			verificado=true;
+		System.out.println("-------Inicio de sesion-------");
+		System.out.println("Introduzca su usuario: ");
+		String usuario=sc.next();
+		int i;
+		for( i=0; i<cuentas.size();i++) {
+			if(usuario.equals(cuentas.get(i).getNombre()))
+				break;
+		}
+		while (verificado==false) {
+			
+			System.out.println("Introduce la contraseña: ");
+			String contrasena=sc.next();
+			if(contrasena.equals(cuentas.get(i).getContrasena())) {
+				verificado=true;		
+				Menu.u=cuentas.get(i);
+
+			}
+			else
+				System.out.println("Contrasena incorrecta.");
 		}
 		return verificado;
 		
