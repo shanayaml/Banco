@@ -41,7 +41,7 @@ public class Menu {
 			
 			
 			if(Operaciones.InicioSesion(sc,cuentas)) {
-				
+			while (continuar) {	
 					
 					opciones_menu();
 					int opc=sc.nextInt();
@@ -85,14 +85,17 @@ public class Menu {
 				if(continuar) {
 					System.out.println("¿Desea continuar?");
 					String respuesta=sc.next();
-					if(respuesta.equals("no"))
+					if(respuesta.equals("no")) {
 						continuar=false;
 						valido=false;
-				
-				}
+					}else if(respuesta.equals("si")) {
+						valido=true;
+						continuar=true;
+					}
+			}
+			}
 			}
 		}
-			
 			}
 	
 	
