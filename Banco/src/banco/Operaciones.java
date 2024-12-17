@@ -113,13 +113,13 @@ public class Operaciones {
 			while(!valido) {
 				System.out.println("Introduzca la cantidad que desee enviar: ");
 				cantidad=sc.nextFloat();
-				if(cantidad>0) {
+				if(cantidad>0&&cantidad<=cuentas.get(i).getSaldo()) {
 					valido=true;
 					cuentas.get(i).setSaldo(cuentas.get(i).getSaldo()+cantidad);
 			
 					u1.setSaldo(u1.getSaldo()-cantidad);
 					System.out.println("La transferencia se ha realizado.");
-			}
+				}
 				else {
 					System.out.println("La cantidad introducida no es valida.");
 				}
