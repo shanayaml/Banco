@@ -16,81 +16,85 @@ public class Menu {
 	
 	public static void Menu_principal(Scanner sc) {
 		llenar_cuentas();
-		boolean continuar=true;
-		boolean creacion_cuenta=false;
+		boolean continuar;
+		boolean creacion_cuenta;
 		boolean valido=true;
 		
-		while (!creacion_cuenta) {
+		while(valido) {
+			creacion_cuenta=false;
+			continuar=true;
+			while (!creacion_cuenta) {
+				
+			System.out.println("¿Desea crear una cuenta?");
+			String resp=sc.next();
 			
-		System.out.println("¿Desea crear una cuenta?");
-		String resp=sc.next();
-		
-		if(resp.equals("si")) {
-			Operaciones.CrearCuenta(sc, cuentas);
-			creacion_cuenta=true;
-		}	
-		else if(resp.equals("no")) {
-			creacion_cuenta=true;
-		}
-		else
-			System.out.println("Respuesta no valida");	
-		}
-		
-		
-		if(Operaciones.InicioSesion(sc,cuentas)) {
-			while(continuar) {
-				while(valido) {
-				opciones_menu();
-				int opc=sc.nextInt();
+			if(resp.equals("si")) {
+				Operaciones.CrearCuenta(sc, cuentas);
+				creacion_cuenta=true;
+			}	
+			else if(resp.equals("no")) {
+				creacion_cuenta=true;
+			}
+			else
+				System.out.println("Respuesta no valida");	
+			}
+			
+			
+			if(Operaciones.InicioSesion(sc,cuentas)) {
 				
-				switch(opc) {
-				
-				case 1:
-					Operaciones.VerSaldo(sc,u);
-					break;
-				case 2:
-					Operaciones.Retirar(sc, u);
-					break;
-				case 3:
-					Operaciones.Deposito(sc, u);
-					break;
-				case 4:
-					Operaciones.Transferencia(sc, u, cuentas);
-					break;
-				case 5:
-					while(continuar) {
-						System.out.println("¿Esta seguro que deea cerrar sesion?");
-						String respuesta=sc.next();
-						if(respuesta.equals("si")) {
-							continuar=false;
-							valido=false;
-							break;
+					
+					opciones_menu();
+					int opc=sc.nextInt();
+					
+					switch(opc) {
+					
+					case 1:
+						Operaciones.VerSaldo(sc,u);
+						break;
+					case 2:
+						Operaciones.Retirar(sc, u);
+						break;
+					case 3:
+						Operaciones.Deposito(sc, u);
+						break;
+					case 4:
+						Operaciones.Transferencia(sc, u, cuentas);
+						break;
+					case 5:
+						while(continuar) {
+							System.out.println("¿Esta seguro que desea cerrar sesion?");
+							String respuesta=sc.next();
+							if(respuesta.equals("si")) {
+								continuar=false;
+								
+								break;
+							}
+							else if(respuesta.equals("no"))
+								break;
+							else 
+								System.out.println("Respuesta no valida");
+								break;
 						}
-						else if(respuesta.equals("no"))
-							break;
-						else 
-							System.out.println("Respuesta no valida");
-							break;
+						
+						
+					default:
+						
+						break;
 					}
-					
-					
-				default:
-					
-					break;
+				
+				if(continuar) {
+					System.out.println("¿Desea continuar?");
+					String respuesta=sc.next();
+					if(respuesta.equals("no"))
+						continuar=false;
+						valido=false;
+				
 				}
 			}
-			if(continuar) {
-				System.out.println("¿Desea continuar?");
-				String respuesta=sc.next();
-				if(respuesta.equals("no"))
-					continuar=false;
-				
-			}
-			
 		}
 			
 			}
-	}
+	
 	
 	public static void opciones_menu() {
 		System.out.println("Elija la opcion que desee:");
